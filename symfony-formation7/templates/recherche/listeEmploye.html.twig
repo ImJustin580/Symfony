@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/main.css') }}?t={{ "now"|date("U") }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src= "/public/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+{% block title %}Liste des Employés{% endblock %}
+
+{% block body %}
+<div class="formation-list">
+    <h2>Liste des Employés</h2>
+    {% if message %}
+        <p style="text-align: center;">{{ message }}</p>
+    {% endif %}
+    <div class="filter">
+        <form method="get" action="{{ path('app_listeEmploye') }}">
+            <input type="text" id="nom" name="nom" value="{{ currentNom }}" placeholder="Rechercher par Nom">
+            <input type="text" id="prenom" name="prenom" value="{{ currentPrenom }}" placeholder="Rechercher par Prénom">
+            <button type="submit">Rechercher</button>
+        </form>
+    </div>
+    {% if ensEmployes is empty %}
+        <p style="text-align: center;">Aucun employé trouvé</p>
+    {% else %}
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>E-mail</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in ensEmployes %}
+                        <tr onclick="showAlert('{{ user.nom }}', '{{ user.prenom }}', '{{ user.roles|join(', ') }}')">
+                            <td>{{ user.nom }}</td>
+                            <td>{{ user.prenom }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.roles|join(', ') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    function showAlert(nom, prenom, statut) {
+        alert("\nNom: " + nom + "\nPrénom: " + prenom + "\nStatut: " + statut);
+    }
+</script>
+{% endblock %}

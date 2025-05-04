@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('styles/login.css') }}?t={{ "now"|date("U") }}">
+{% endblock %}
+
+
+{% block body %}
+<h1>Ajout de formation</h1>
+    {{ form(form)}}
+{% endblock %}

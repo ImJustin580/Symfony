@@ -1,0 +1,100 @@
+.dangrek-regular {
+    font-family: "Dangrek", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  body {
+    font-family: 'Shrikhand', cursive;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    font-family: 'Shrikhand';
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 36px;
+    color: #5b5b5b;
+}
+
+/* Form Styles */
+.form-signin {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-family: 'Shrikhand';
+    margin-bottom: 5px;
+    display: block;
+    color:#926d7f;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: transparent;
+    color: #797979;
+    border: 2px solid #000000;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    color: rgb(0, 0, 0);
+}
+
+/* Alert Styles */
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+.login-image {
+    position: absolute;
+    top: 35%; /* Ajuste la position verticale */
+    left: 15%;
+    transform: translateX(-50%);
+    width: 350px; /* Ajuste la taille selon tes besoins */
+    height: auto;
+}

@@ -1,0 +1,40 @@
+<h2>Liste des Formations</h2>
+<head>
+    <link rel="stylesheet" href="{{ asset('styles/main.css') }}">
+</head>
+{% if (message) %}
+    <div class="alert alert-warning">{{ message }}</div>
+{% endif %}
+
+<div class="formation-list">
+    {% if ensFormations is empty %}
+        <p>Aucune formation disponible.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date de début</th>
+                    <th>Nombre d'heures</th>
+                    <th>Département</th>
+                    <th>description</th>
+                    <th>Produit</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formation in ensFormations %}
+                    <tr>
+                        <td>{{ formation.dateDebut|date("m/d/Y") }}</td>
+                        <td>{{ formation.nbreHeures }}</td>
+                        <td>{{ formation.departement }}</td>
+                        <td>{{ formation.description }}</td>
+                        <td>{{ formation.produit.libelle }}</td>
+                        <td>
+                            <a href="{{ path('app_formation_sup', {'id': formation.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette formation ?');">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>

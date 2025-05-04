@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}?t={{ "now"|date("U") }}">
+{% endblock %}
+
+{% block title %}Recherche d'Inscriptions{% endblock %}
+
+{% block body %}
+    <h1>Recherche d'Inscriptions</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Rechercher</button>
+    {{ form_end(form) }}
+
+    {% if message %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    {% if groupedInscriptions is not empty %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom de l'employé</th>
+                    <th>Prénom de l'employé</th>
+                    <th>Formations</th>
+                    <th>date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employeData in groupedInscriptions %}
+                    <tr>
+                        <td>{{ employeData.user.nom }}</td>
+                        <td>{{ employeData.user.prenom }}</td>
+                        <td>
+                            <ul>
+                                {% for inscription in employeData.formations %}
+                                    <li>
+                                        {% if inscription.laFormation %}
+                                            {% if inscription.laFormation.produit %}
+                                                {{ inscription.laFormation.produit.libelle }}
+                                                {{ inscription.laFormation.dateDebut|date("m/d/Y") }}
+                                            {% else %}
+                                                Aucun produit
+                                            {% endif %}
+                                        {% else %}
+                                            Aucune formation
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucune inscription trouvée.</p>
+    {% endif %}
+{% endblock %}

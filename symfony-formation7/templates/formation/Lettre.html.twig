@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/login.css') }}?t={{ "now"|date("U") }}">
+{% endblock %}
+
+
+{% block body %}
+    <h1>Recherche d'employés par lettre</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    {% if message %}
+        <div class="alert alert-warning">{{ message }}</div>
+    {% endif %}
+
+    {% if employes is not empty %}
+        <h2>Résultats de la recherche :</h2>
+        <ul>
+            {% for employe in employes %}
+                <li>{{ employe.prenom }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun employé trouvé.</p>
+    {% endif %}
+{% endblock %}
